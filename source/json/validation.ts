@@ -46,14 +46,12 @@ export function validateObjectByType(json: any, type: Type) {
         switch (type.primitive) {
             // Validate type by primitive
             case TypeEnum.Number:
+            case TypeEnum.Float:
                 if( typeof value !== 'number') return false;
                 break;
             case TypeEnum.Integer:
                 if( typeof value !== 'number') return false;
                 if( !Number.isInteger(value) ) return false;
-                break;
-            case TypeEnum.Float:
-                if( typeof value !== 'number') return false;
                 break;
             case TypeEnum.String:
                 if( typeof value !== 'string' ) return false;
