@@ -8,7 +8,7 @@ import {Type, TypeEnum} from "../types"
  * @param type - The type rules
  * @return boolean - true when json satisfies the rules of type
  */
-export function validateObjectByType(json: any, type: Type) {
+export function TypeOf(json: any, type: Type) {
 
     // A queue used to validate objects & their nested objects
     let queue: [any, Type][] = [];

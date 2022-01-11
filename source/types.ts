@@ -1,5 +1,7 @@
 
 // Primitive types
+import {TypeOf} from "./json/validation";
+
 enum TypeEnum {
     Number,
     Integer,
@@ -24,26 +26,31 @@ interface Type {
 
 // An interface for complex type property builder
 // path including the name, its dimensions (by *) and its optional property (by ?)
-interface ObjTypeProperty {
+interface Rule {
     path: string, type: TypeEnum
 }
 
 /**
  *  A builder for a complex type rules
  */
-class ObjTypeBuilder {
+class Rules {
 
-    properties: ObjTypeProperty[];
+    rules: Rule[];
 
     constructor() {
-        this.properties = [];
+        this.rules = [];
     }
 
-    addProp(name: string, type: TypeEnum) {
-        this.properties.push({
+    set(name: string, type: TypeEnum) {
+        this.rules.push({
             path: name, type: type
         });
+
         return this;
+    }
+
+    validate(json: any) {
+        return TypeOf(json, this.build());
     }
 
     // Generate Type object from properties
@@ -56,8 +63,8 @@ class ObjTypeBuilder {
         };
 
         // Iterate over all raw properties
-        for( let i = 0; i < this.properties.length; i++ ) {
-            let prop = this.properties[i];   // property name
+        for(let i = 0; i < this.rules.length; i++ ) {
+            let prop = this.rules[i];   // property name
             let type: TypeEnum = prop.type;  // property type
 
             let pathParts: string[] = prop.path.split(".");
@@ -108,4 +115,4 @@ class ObjTypeBuilder {
     }
 }
 
-export { ObjTypeBuilder, TypeEnum, Type}
+export { Rules, TypeEnum, Type}

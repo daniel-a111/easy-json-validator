@@ -1,24 +1,23 @@
-import {ObjTypeBuilder, TypeEnum} from "../source/types";
-import {validateObjectByType} from "../source/json/validation";
+import {Rules, TypeEnum} from "../source/types";
 
 test('Detect valid integer property', () => {
 
-    let b: ObjTypeBuilder = new ObjTypeBuilder();
-    b.addProp("a", TypeEnum.Integer);
-    expect(validateObjectByType({a: 3}, b.build())).toBe(true);
+    let b: Rules = new Rules();
+    b.set("a", TypeEnum.Integer);
+    expect(b.validate({a: 3})).toBe(true);
 });
 
 test('Detect invalid float value for integer', () => {
 
-    let b: ObjTypeBuilder = new ObjTypeBuilder();
-    b.addProp("a", TypeEnum.Integer);
-    expect(validateObjectByType({a: 3.3}, b.build())).toBe(false);
+    let b: Rules = new Rules();
+    b.set("a", TypeEnum.Integer);
+    expect(b.validate({a: 3.3})).toBe(false);
 });
 
 test('Detect valid string property', () => {
 
-    let b: ObjTypeBuilder = new ObjTypeBuilder();
-    b.addProp("a", TypeEnum.String);
-    expect(validateObjectByType({a: '123'}, b.build())).toBe(true);
+    let b: Rules = new Rules();
+    b.set("a", TypeEnum.String);
+    expect(b.validate({a: '123'})).toBe(true);
 });
 
