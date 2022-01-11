@@ -1,5 +1,5 @@
 # easy-json-validator
-This tool is use for validate a complex JSON object by easy set of rules.
+This tool uses for validate a complex JSON object by easy set of rules.
 
 # Usage
 ## Define a new type / structure by set of rules
