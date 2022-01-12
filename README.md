@@ -60,7 +60,7 @@ we can define 2dim lists and so, for example
 define a's type to be 2dim list of integers.
 
 ### Optional
-An optional property can be defined by ?, for example:
+An optional property can be defined by ```?```, for example:
 ```
 r.set("a?", TypeEnum.Integer);
 ```
